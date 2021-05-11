@@ -22,7 +22,7 @@ import { HomeComponent } from './home/home.component';
 import { GameComponent } from './game/game.component';
 import { LoginComponent } from './login/login.component';
 import { PatientsDashboardsComponent } from './patients-dashboards/patients-dashboards.component';
-
+import {MatCheckboxModule} from '@angular/material/checkbox';
 
 @NgModule({
   declarations: [
@@ -50,7 +50,8 @@ import { PatientsDashboardsComponent } from './patients-dashboards/patients-dash
     MatSlideToggleModule,
     MatSelectModule,
     MatOptionModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatCheckboxModule
   ],
   providers: [],
   bootstrap: [AppComponent]

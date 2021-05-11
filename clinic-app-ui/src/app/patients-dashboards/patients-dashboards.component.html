@@ -1,1 +1,130 @@
-<p>patients-dashboards works!</p>
+<div style="width: initial;padding: 20px;">
+    <mat-form-field style="display: inherit;">
+        <mat-label>Search Patients ...</mat-label>
+        <input matInput (keyup)="applyFilter($event)" placeholder="Ex. mostafa" #input>
+    </mat-form-field>
+</div>
+
+
+<div class="example-container mat-elevation-z8" style="margin: 15px;">
+    <mat-table [dataSource]="datasource" table-bordered table-striped>
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="select" [sticky]=true>
+            <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <mat-checkbox (click)="$event.stopPropagation()" (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)" [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="position" [sticky]=true>
+            <mat-header-cell *matHeaderCellDef> Position </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.position}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="name" [sticky]=true>
+            <mat-header-cell *matHeaderCellDef> Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.name}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="age">
+            <mat-header-cell *matHeaderCellDef> Age </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.age}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="address">
+            <mat-header-cell *matHeaderCellDef> Address </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.address}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="mobile">
+            <mat-header-cell *matHeaderCellDef> Mobile </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.mobile}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="homePhone">
+            <mat-header-cell *matHeaderCellDef> Home Phone </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.mobile}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="job">
+            <mat-header-cell *matHeaderCellDef> Job </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.job}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="trustedPersonMobile">
+            <mat-header-cell *matHeaderCellDef> Trusted Person Mobile </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.trustedPersonMobile}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="anyPreviousSurgical">
+            <mat-header-cell *matHeaderCellDef> Any Previous Surgical </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.anyPreviousSurgical}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="diseaseState">
+            <mat-header-cell *matHeaderCellDef> Disease State </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.diseaseState}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="medicalProblems">
+            <mat-header-cell *matHeaderCellDef> Medical Problems </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.medicalProblems}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="anyCureSensitivity">
+            <mat-header-cell *matHeaderCellDef> Any Cure Sensitivity </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.anyCureSensitivity}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="sensitivityCureName">
+            <mat-header-cell *matHeaderCellDef> Sensitivity Cure Name </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.sensitivityCureName}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="gender">
+            <mat-header-cell *matHeaderCellDef> Gender </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.gender}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="pregnant">
+            <mat-header-cell *matHeaderCellDef> pregnant </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.pregnant}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="pregnantMonth">
+            <mat-header-cell *matHeaderCellDef> pregnantMonth </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.pregnantMonth}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="breastFeeding">
+            <mat-header-cell *matHeaderCellDef> breastFeeding </mat-header-cell>
+            <mat-cell *matCellDef="let row"> {{row.breastFeeding}} </mat-cell>
+        </ng-container>
+
+
+
+        <!-- Position Column -->
+        <!-- <ng-container matColumnDef="position">
+        <th mat-header-cell *matHeaderCellDef="position"> Position </th>
+        <td mat-cell *matCellDef="let row">{{row.position}}</td>
+    </ng-container> -->
+
+        <!-- Name Column  -->
+        <!-- <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef="name"> Name </th>
+        <td mat-cell *matCellDef="let row">{{row.name}}</td>
+    </ng-container> -->
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;" >
+            <!-- (click)="selection.toggle(row)" -->
+        </mat-row>
+    </mat-table>
+</div>

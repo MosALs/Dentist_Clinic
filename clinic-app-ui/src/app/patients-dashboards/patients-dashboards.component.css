@@ -1,0 +1,26 @@
+.example-container {
+  height: 100%;
+  overflow: auto;
+}
+
+.mat-table {
+  overflow-x: scroll;
+}
+
+.mat-header-cell, .mat-cell  {
+  min-width: 130px !important;
+  justify-content: center;
+  
+}
+
+.mat-header-cell{
+  color: #ffffff;
+  background: #7f60fb;
+  font-size: 13px;
+  font-family: system-ui;
+}
+
+.mat-row:nth-child(odd) .mat-cell{
+  background-color: #e5e8ef ;
+  align-items: center;
+}
